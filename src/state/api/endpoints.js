@@ -1,8 +1,13 @@
-import { UserApi, ProductAPI } from "./services";
+import { UserApi, ProductAPI, InventoryAPI, TransactionAPI } from "./services";
 
 export const generateEndpoints = (builder) => {
   const endpoints = {};
-  const combinedApis = { ...UserApi, ...ProductAPI };
+  const combinedApis = {
+    ...UserApi,
+    ...ProductAPI,
+    ...InventoryAPI,
+    ...TransactionAPI,
+  };
 
   Object.keys(combinedApis).forEach((key) => {
     endpoints[key] = combinedApis[key](builder);

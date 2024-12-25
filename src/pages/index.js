@@ -8,3 +8,5 @@ export * from "./dashboard/product/index.jsx";
 export * from "./dashboard/product/viewProductById.jsx";
 export * from "./dashboard/product/createProduct.jsx";
 export * from "./dashboard/product/editProduct.jsx";
+export * from "./dashboard/inventory/index.jsx";
+export * from "./dashboard/transaction/index.jsx";

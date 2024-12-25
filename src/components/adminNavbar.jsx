@@ -15,8 +15,20 @@ export function AdminNavbar({ title }) {
     Toast(TOAST.SUCCESS, "Logged out successfully");
   };
 
+  const handleDashboard = () => {
+    navigate("/dashboard");
+  };
+
   const handleProduct = () => {
     navigate("/dashboard/product");
+  };
+
+  const handleInventory = () => {
+    navigate("/dashboard/inventory");
+  };
+
+  const handleTransaction = () => {
+    navigate("/dashboard/transaction");
   };
 
   return (
@@ -29,17 +41,29 @@ export function AdminNavbar({ title }) {
         </h1>
 
         <nav className="flex items-center space-x-6">
-          <a
-            href="#"
+          <button
+            onClick={handleDashboard}
             className="text-lg font-medium transition duration-300 text-light-default hover:text-primary-variant"
           >
             Dashboard
-          </a>
+          </button>
           <button
             onClick={handleProduct}
             className="text-lg font-medium transition duration-300 text-light-default hover:text-primary-variant"
           >
             Product
+          </button>
+          <button
+            onClick={handleInventory}
+            className="text-lg font-medium transition duration-300 text-light-default hover:text-primary-variant"
+          >
+            Inventory
+          </button>
+          <button
+            onClick={handleTransaction}
+            className="text-lg font-medium transition duration-300 text-light-default hover:text-primary-variant"
+          >
+            Transaction
           </button>
           <button
             onClick={handleLogout}
