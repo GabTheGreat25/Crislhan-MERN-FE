@@ -4,16 +4,21 @@ import { AdminNavbar, AdminFooter } from "@components";
 
 export function AdminLayout() {
   return (
-    <>
-      <section>
-        <span className="z-[1000] sticky top-0 bg-light-default text-dark-default dark:bg-dark-default dark:text-light-default">
-          <AdminNavbar />
-        </span>
-        <div>
-          <Outlet />
-        </div>
+    <div className="flex flex-col min-h-screen">
+      {/* Navbar */}
+      <header className="z-[1000] sticky top-0">
+        <AdminNavbar />
+      </header>
+
+      {/* Main content */}
+      <main className="flex-grow">
+        <Outlet />
+      </main>
+
+      {/* Footer */}
+      <footer>
         <AdminFooter />
-      </section>
-    </>
+      </footer>
+    </div>
   );
 }

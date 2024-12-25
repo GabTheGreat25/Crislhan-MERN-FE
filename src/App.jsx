@@ -5,7 +5,18 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import { Login } from "@/pages";
+import {
+  Login,
+  Register,
+  ForgotPassword,
+  ResetLink,
+  ResetPassword,
+  Dashboard,
+  Product,
+  ViewProductById,
+  CreateProduct,
+  EditProduct,
+} from "@/pages";
 import {
   AdminLayout,
   CustomerLayout,
@@ -26,12 +37,22 @@ export default function App() {
               <Route element={<PublicRoute />}>
                 <Route element={<HomeLayout />}>
                   <Route index element={<Login />} />
+                  <Route path="register" element={<Register />} />
+                  <Route path="forgotPassword" element={<ForgotPassword />} />
+                  <Route path="resetLink" element={<ResetLink />} />
+                  <Route path="resetPassword" element={<ResetPassword />} />
                 </Route>
               </Route>
               {/* Private Routes */}
               <Route element={<PrivateRoute />}>
                 {/* Admin Routes */}
-                <Route path="dashboard" element={<AdminLayout />}></Route>
+                <Route path="dashboard" element={<AdminLayout />}>
+                  <Route index element={<Dashboard />} />
+                  <Route path="product" element={<Product />} />
+                  <Route path="product/:id" element={<ViewProductById />} />
+                  <Route path="product/create" element={<CreateProduct />} />
+                  <Route path="product/edit/:id" element={<EditProduct />} />
+                </Route>
                 {/* Customer Routes */}
                 <Route path="home" element={<CustomerLayout />}></Route>
               </Route>

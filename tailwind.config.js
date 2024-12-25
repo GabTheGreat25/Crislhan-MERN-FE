@@ -25,6 +25,7 @@ export default {
         },
         dark: {
           default: "#212B36",
+          secondary: "#121212",
           shadow: "#00000075",
           variant: "#000000",
         },

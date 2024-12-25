@@ -20,10 +20,10 @@ const authSlice = createSlice({
     builder.addMatcher(
       api.endpoints.loginUser.matchFulfilled,
       (state, { payload }) => {
-        if (payload.success) {
-          state.token = payload.token;
+        if (payload.status) {
+          state.token = payload.meta.access;
           state.authenticated = true;
-          state.user = payload.user;
+          state.user = payload.data;
         }
       },
     );
@@ -31,7 +31,7 @@ const authSlice = createSlice({
     builder.addMatcher(
       api.endpoints.editUser.matchFulfilled,
       (state, { payload }) => {
-        if (payload.success) {
+        if (payload.status) {
           state.user = {
             ...state.user,
             ...payload.user,

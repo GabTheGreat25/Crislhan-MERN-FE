@@ -1,24 +1,10 @@
 import React from "react";
 
-export function AdminFooter({
-  showButton = false,
-  onButtonClick,
-  buttonTitle,
-  buttonIcon,
-}) {
-  const getAltText = (iconSrc) => {
-    if (iconSrc) {
-      const parts = iconSrc.split("/");
-      const fileName = parts[parts.length - 1];
-      return fileName.split(".")[0];
-    }
-    return "Icon";
-  };
-
+export function AdminFooter() {
   return (
-    <div>
+    <div className="p-6 mt-auto">
       <div className="flex items-center justify-center pt-12 text-light-default 2xl:gap-x-16 xl:gap-x-12 lg:gap-x-10 md:gap-x-8">
-        <div>
+        <div className="text-justify">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -27,7 +13,7 @@ export function AdminFooter({
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
           culpa qui officia deserunt mollit anim id est laborum.
         </div>
-        <div>
+        <div className="text-justify">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -41,24 +27,6 @@ export function AdminFooter({
       <div className="pt-8 text-base text-center text-light-secondary">
         <p>2024 Copyright</p>
       </div>
-
-      {showButton && (
-        <div className="relative flex items-end justify-end pt-8 text-center bottom-16 right-4">
-          <button
-            onClick={onButtonClick}
-            className="bg-gradient-to-r from-[#c1905f] to-[#9c6d3b] p-2 rounded-full px-5 py-3 border border-light-default"
-          >
-            <div className="flex items-center justify-center gap-x-3">
-              <img
-                src={buttonIcon}
-                alt={getAltText(buttonIcon)}
-                className="object-cover w-5 h-5"
-              />
-              <span className="text-lg text-light-default">{buttonTitle}</span>
-            </div>
-          </button>
-        </div>
-      )}
     </div>
   );
 }

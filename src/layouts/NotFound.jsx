@@ -19,7 +19,7 @@ export function NotFound() {
       <button
         title="Go Back"
         onClick={goBack}
-        className="px-8 text-xl font-medium duration-200 md:text-2xl btn text-light-default hover:ease-in hover:bg-light-default hover:text-dark-default"
+        className="px-8 py-2 text-xl font-medium duration-200 rounded-md md:text-2xl bg-secondary-variant text-light-default hover:ease-in hover:bg-light-default hover:text-dark-default"
       >
         Go Back
       </button>

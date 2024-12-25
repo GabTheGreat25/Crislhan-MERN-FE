@@ -4,16 +4,21 @@ import { CustomerNavbar, CustomerFooter } from "@components";
 
 export function CustomerLayout() {
   return (
-    <>
-      <section>
-        <span className="z-[1000] sticky top-0 bg-light-default text-dark-default dark:bg-dark-default dark:text-light-default">
-          <CustomerNavbar />
-        </span>
-        <div>
-          <Outlet />
-        </div>
+    <div className="flex flex-col min-h-screen">
+      {/* Navbar */}
+      <header className="z-[1000] sticky top-0">
+        <CustomerNavbar />
+      </header>
+
+      {/* Main content */}
+      <main className="flex-grow">
+        <Outlet />
+      </main>
+
+      {/* Footer */}
+      <footer>
         <CustomerFooter />
-      </section>
-    </>
+      </footer>
+    </div>
   );
 }

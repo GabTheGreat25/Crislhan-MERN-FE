@@ -3,14 +3,14 @@ import * as yup from "yup";
 const noSpecialCharacters = /^[a-zA-Z\s]+$/;
 
 export const registerValidation = yup.object().shape({
-  firstname: yup
+  firstName: yup
     .string()
     .matches(
       noSpecialCharacters,
       "First Name should not contain special characters or numbers",
     )
     .required("First Name is required"),
-  lastname: yup
+  lastName: yup
     .string()
     .matches(
       noSpecialCharacters,
@@ -25,4 +25,16 @@ export const registerValidation = yup.object().shape({
     .string()
     .min(6, "Password must be at least 6 characters")
     .required("Password is required"),
+  image: yup
+    .mixed()
+    .test("fileRequired", "At least one image is required", (value) => {
+      return value && value.length > 0;
+    })
+    .test("fileType", "Only image files are allowed", (value) => {
+      if (!value || value.length === 0) return true;
+      return value.every((file) => {
+        const fileType = file.type.split("/")[0];
+        return fileType === "image";
+      });
+    }),
 });

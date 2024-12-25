@@ -25,7 +25,6 @@ export function Login() {
         .then((res) => {
           if (res.status) {
             Toast(TOAST.SUCCESS, "Login successful!");
-            // navigate("/dashboard");
           } else
             Toast(
               TOAST.ERROR,
@@ -37,7 +36,6 @@ export function Login() {
           const errorMessage =
             error?.data?.message ||
             "An unexpected error occurred. Please try again.";
-          console.log(errorMessage);
           Toast(TOAST.ERROR, errorMessage);
         });
     },
@@ -54,30 +52,38 @@ export function Login() {
         </div>
       ) : (
         <>
-          <div className="grid w-full h-full p-12">
-            <h1 className="mb-1 text-[30px] font-semibold">Login</h1>
-            <p className="mb-2 text-">Sign in to get started</p>
+          <div className="grid w-full h-screen p-12 overflow-y-auto">
+            <div className="grid justify-between grid-cols-2 items">
+              <h1 className="pt-3 text-3xl font-semibold">Welcome Back</h1>
+              <span className="grid justify-end">
+                <p className="pt-3 text-3xl">Sign in to get started</p>
+              </span>
+            </div>
+
             <hr className="mb-8" />
 
             <form onSubmit={formik.handleSubmit} className="">
               <div className="mb-4">
-                <label htmlFor="email" className="block mb-2 font-medium text-">
+                <label
+                  htmlFor="email"
+                  className="block mb-2 text-lg font-medium"
+                >
                   Email address <span className="text-error-default">*</span>
                 </label>
                 <input
                   type="email"
                   id="email"
                   placeholder="Email"
-                  className={`text-lg w-full p-4 border rounded-md ${
+                  className={`text-xl w-full p-4 border rounded-md ${
                     formik.errors.email && formik.touched.email
                       ? "border-error-default"
-                      : "border-light-secondary"
-                  } text-light-default placeholder-light-secondary focus:border-info-secondary focus:outline-none`}
+                      : "border-light-default"
+                  } text-light-default placeholder-light-default focus:border-info-secondary focus:outline-none`}
                   onChange={formik.handleChange}
                   value={formik.values.email}
                 />
                 {formik.errors.email && formik.touched.email && (
-                  <p className="mt-2 text-lg text-error-default">
+                  <p className="mt-2 text-xl text-error-default">
                     {formik.errors.email}
                   </p>
                 )}
@@ -86,7 +92,7 @@ export function Login() {
               <div className="mb-4">
                 <label
                   htmlFor="password"
-                  className="block mb-2 font-medium text-"
+                  className="block mb-2 text-lg font-medium"
                 >
                   Password <span className="text-error-default">*</span>
                 </label>
@@ -95,11 +101,11 @@ export function Login() {
                     type={isPasswordVisible ? "text" : "password"}
                     id="password"
                     placeholder="Enter password"
-                    className={`text-lg w-full p-4 border rounded-md ${
+                    className={`text-xl w-full p-4 border rounded-md ${
                       formik.errors.password && formik.touched.password
                         ? "border-error-default"
-                        : "border-light-secondary"
-                    } text-light-default placeholder-light-secondary focus:border-info-secondary focus:outline-none`}
+                        : "border-light-default"
+                    } text-light-default placeholder-light-default focus:border-info-secondary focus:outline-none`}
                     onChange={formik.handleChange}
                     value={formik.values.password}
                   />
@@ -112,43 +118,47 @@ export function Login() {
                   </button>
                 </div>
                 {formik.errors.password && formik.touched.password && (
-                  <p className="mt-2 text-lg text-error-default">
+                  <p className="mt-2 text-xl text-error-default">
                     {formik.errors.password}
                   </p>
                 )}
               </div>
 
-              <div className="flex items-center justify-start pb-6">
+              <div className="flex items-center justify-start pt-3 pb-6">
                 <button
                   type="button"
                   onClick={() => navigate("/forgotPassword")}
-                  className="text-lg underline text-light-secondary"
+                  className="text-xl underline text-light-secondary"
                 >
-                  Forgot Password
+                  Forgot Password?
                 </button>
               </div>
 
-              <button
-                type="submit"
-                className="w-full py-3 text-lg rounded-md bg-dark-secondary text-light-default"
-                disabled={isLoading}
-              >
-                Login
-              </button>
+              <div className="flex items-center justify-center">
+                <button
+                  type="submit"
+                  className="px-20 py-3 text-xl rounded-md bg-secondary-variant text-dark-default/80"
+                  disabled={isLoading}
+                >
+                  Login
+                </button>
+              </div>
             </form>
 
-            <div className="grid items-start justify-center grid-cols-[40%_20%_40%] text-sm text-center">
+            <div className="grid items-center justify-center grid-cols-[40%_20%_40%] text-sm text-center">
               <hr />
-              <span className="text-light-secondary text-">Or</span>
+              <span className="text-lg text-light-secondary">Or</span>
               <hr />
             </div>
 
-            <button
-              onClick={() => navigate("/register")}
-              className="w-full text-lg cursor-pointer roun ded-md bg-dark-secondary text-light-default"
-            >
-              Register
-            </button>
+            <div className="flex items-center justify-center mt-3">
+              <button
+                onClick={() => navigate("/register")}
+                className="px-20 py-3 text-xl rounded-md cursor-pointer bg-secondary-default text-dark-default/80"
+              >
+                Register
+              </button>
+            </div>
           </div>
         </>
       )}
