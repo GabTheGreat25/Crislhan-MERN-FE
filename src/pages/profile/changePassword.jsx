@@ -24,7 +24,7 @@ export function ChangePassword() {
     validationSchema: updatePasswordValidation,
     onSubmit: (values) => {
       updatePassword({
-        id: user[0]._id,
+        id: user._id,
         payload: {
           newPassword: values.newPassword,
           confirmPassword: values.confirmPassword,

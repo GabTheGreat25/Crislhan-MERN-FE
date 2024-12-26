@@ -25,6 +25,7 @@ import {
   EditTransaction,
   EditProfile,
   ChangePassword,
+  Home,
 } from "@/pages";
 import {
   AdminLayout,
@@ -87,7 +88,9 @@ export default function App() {
                   />
                 </Route>
                 {/* Customer Routes */}
-                <Route path="home" element={<CustomerLayout />}></Route>
+                <Route path="home" element={<CustomerLayout />}>
+                  <Route index element={<Home />} />
+                </Route>
               </Route>
               {/* 404 */}
               <Route path="*" element={<NotFound />} />

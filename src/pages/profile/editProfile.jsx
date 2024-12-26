@@ -35,7 +35,7 @@ export function EditProfile() {
       });
 
       editUser({
-        id: user[0]._id,
+        id: user._id,
         payload: formData,
       })
         .unwrap()
@@ -63,14 +63,14 @@ export function EditProfile() {
   useEffect(() => {
     if (user && Object.keys(user).length > 0) {
       formik.setValues({
-        firstName: user[0].firstName || "",
-        lastName: user[0].lastName || "",
-        email: user[0].email || "",
+        firstName: user?.firstName || "",
+        lastName: user?.lastName || "",
+        email: user?.email || "",
         image: [],
       });
 
-      if (Array.isArray(user[0].image) && user[0].image.length > 0) {
-        setPreviewImages(user[0].image.map((img) => img.url));
+      if (Array.isArray(user?.image) && user?.image.length > 0) {
+        setPreviewImages(user?.image.map((img) => img.url));
       } else {
         setPreviewImages([]);
       }

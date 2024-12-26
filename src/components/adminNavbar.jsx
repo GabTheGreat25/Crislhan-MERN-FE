@@ -14,12 +14,12 @@ export function AdminNavbar() {
 
   const handleProfile = () => {
     setDropdownOpen(false);
-    navigate(`/dashboard/profile/edit/${user[0]?._id}`);
+    navigate(`/dashboard/profile/edit/${user?._id}`);
   };
 
   const handleChangePassword = () => {
     setDropdownOpen(false);
-    navigate(`/dashboard/profile/changePassword/${user[0]?._id}`);
+    navigate(`/dashboard/profile/changePassword/${user?._id}`);
   };
 
   const handleLogout = () => {
@@ -74,7 +74,7 @@ export function AdminNavbar() {
               className="relative flex items-center justify-center w-12 h-12 overflow-hidden rounded-full focus:outline-none focus:ring-2 focus:ring-primary-variant"
             >
               <img
-                src={user[0]?.image[0]?.url}
+                src={user?.image[0]?.url}
                 alt="User Avatar"
                 className="object-cover w-full h-full"
               />

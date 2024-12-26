@@ -27,12 +27,11 @@ const authSlice = createSlice({
         }
       },
     );
-
     builder.addMatcher(
       api.endpoints.editUser.matchFulfilled,
       (state, { payload }) => {
         if (payload?.status) {
-          state.user = { ...payload.data };
+          state.user = { ...payload.data[0] };
         }
       },
     );
