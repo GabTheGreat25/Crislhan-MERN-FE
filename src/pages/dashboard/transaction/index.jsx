@@ -28,8 +28,6 @@ export function Transaction() {
     })),
   ];
 
-  console.log(allTransactions);
-
   const handleDelete = (id) => {
     deleteTransaction(id)
       .unwrap()
@@ -52,12 +50,12 @@ export function Transaction() {
     navigate(`/dashboard/transaction/${id}`);
   };
 
-  const handleEdit = (id) => {
+  const handleEdit = (id, status) => {
+    if (status === "Completed") {
+      Toast(TOAST.WARN, "Completed transactions cannot be edited!");
+      return;
+    }
     navigate(`/dashboard/transaction/edit/${id}`);
-  };
-
-  const handleCreateTransaction = () => {
-    navigate("/dashboard/transaction/create");
   };
 
   return (
@@ -72,12 +70,6 @@ export function Transaction() {
             <h1 className="text-3xl font-bold text-primary-default">
               Transactions
             </h1>
-            <button
-              onClick={handleCreateTransaction}
-              className="px-6 py-2 text-lg font-semibold rounded-md bg-secondary-variant text-light-default"
-            >
-              Create Transaction
-            </button>
           </div>
           <table className="w-full border-collapse rounded-lg shadow-lg bg-light-variant">
             <thead>
@@ -106,8 +98,7 @@ export function Transaction() {
                     {transaction._id}
                   </td>
                   <td className="p-4 border border-neutral-300 text-dark-default dark:text-light-default">
-                    {transaction.user.firstName}
-                    {transaction.user.lastName}
+                    {transaction.user.firstName} {transaction.user.lastName}
                   </td>
                   <td className="p-4 border border-neutral-300 text-dark-default dark:text-light-default">
                     <ul className="pl-4 list-disc">
@@ -139,7 +130,9 @@ export function Transaction() {
                           <FaEdit
                             className="cursor-pointer text-primary-default size-6"
                             title="Edit"
-                            onClick={() => handleEdit(transaction._id)}
+                            onClick={() =>
+                              handleEdit(transaction._id, transaction.status)
+                            }
                           />
                           <FaTrash
                             className="cursor-pointer text-error-default size-6"

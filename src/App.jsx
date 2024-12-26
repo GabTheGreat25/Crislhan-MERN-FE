@@ -21,6 +21,8 @@ import {
   CreateInventory,
   EditInventory,
   Transaction,
+  ViewTransactionById,
+  EditTransaction,
 } from "@/pages";
 import {
   AdminLayout,
@@ -68,6 +70,14 @@ export default function App() {
                     element={<EditInventory />}
                   />
                   <Route path="transaction" element={<Transaction />} />
+                  <Route
+                    path="transaction/:id"
+                    element={<ViewTransactionById />}
+                  />
+                  <Route
+                    path="transaction/edit/:id"
+                    element={<EditTransaction />}
+                  />
                 </Route>
                 {/* Customer Routes */}
                 <Route path="home" element={<CustomerLayout />}></Route>

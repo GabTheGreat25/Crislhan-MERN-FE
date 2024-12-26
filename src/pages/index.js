@@ -13,3 +13,5 @@ export * from "./dashboard/inventory/viewInventoryById.jsx";
 export * from "./dashboard/inventory/createInventory.jsx";
 export * from "./dashboard/inventory/editInventory.jsx";
 export * from "./dashboard/transaction/index.jsx";
+export * from "./dashboard/transaction/viewTransactionById.jsx";
+export * from "./dashboard/transaction/editTransaction.jsx";

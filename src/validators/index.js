@@ -7,3 +7,5 @@ export * from "./createProduct.js";
 export * from "./editProduct.js";
 export * from "./createInventory.js";
 export * from "./editInventory.js";
+export * from "./createTransaction.js";
+export * from "./editTransaction.js";
