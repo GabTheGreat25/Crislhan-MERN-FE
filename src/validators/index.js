@@ -9,3 +9,4 @@ export * from "./createInventory.js";
 export * from "./editInventory.js";
 export * from "./createTransaction.js";
 export * from "./editTransaction.js";
+export * from "./editProfile.js";

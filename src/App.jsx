@@ -23,6 +23,8 @@ import {
   Transaction,
   ViewTransactionById,
   EditTransaction,
+  EditProfile,
+  ChangePassword,
 } from "@/pages";
 import {
   AdminLayout,
@@ -77,6 +79,11 @@ export default function App() {
                   <Route
                     path="transaction/edit/:id"
                     element={<EditTransaction />}
+                  />
+                  <Route path="profile/edit/:id" element={<EditProfile />} />
+                  <Route
+                    path="profile/changePassword/:id"
+                    element={<ChangePassword />}
                   />
                 </Route>
                 {/* Customer Routes */}

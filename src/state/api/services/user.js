@@ -58,7 +58,7 @@ export const registerUser = (builder) =>
 
 export const editUser = (builder) =>
   builder.mutation({
-    query: (id, payload) => ({
+    query: ({ id, payload }) => ({
       url: `${PATH.USERS}${PATH.EDIT.replace(":id", id)}`,
       method: METHOD.PATCH,
       body: payload,
@@ -95,7 +95,7 @@ export const forceDeleteUser = (builder) =>
 
 export const updatePassword = (builder) =>
   builder.mutation({
-    query: (id, payload) => ({
+    query: ({ id, payload }) => ({
       url: `${PATH.USERS}${PATH.CHANGE_PASSWORD.replace(":id", id)}`,
       method: METHOD.PATCH,
       body: payload,
