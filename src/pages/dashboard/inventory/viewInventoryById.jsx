@@ -3,11 +3,11 @@ import { useParams, useNavigate } from "react-router-dom";
 import { FadeLoader } from "react-spinners";
 import { hooks } from "@api";
 
-export function ViewProductById() {
+export function ViewInventoryById() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const { data: product, isLoading } = hooks.useGetSingleProductQuery(id);
+  const { data: inventory, isLoading } = hooks.useGetSingleInventoryQuery(id);
 
   return (
     <section className="p-4">
@@ -27,24 +27,15 @@ export function ViewProductById() {
             <div className="flex flex-col items-start w-full max-w-3xl p-6 space-y-6 rounded-lg shadow-lg bg-light-variant">
               <div className="flex-1 text-center lg:text-left">
                 <h1 className="mb-4 text-3xl font-bold text-primary-default">
-                  {product.data.name}
+                  Product: {inventory.data.product.name}
                 </h1>
                 <p className="mb-4 text-lg text-dark-default">
-                  <strong>Description:</strong> {product.data.description}
+                  <strong>Quantity:</strong> {inventory.data.quantity}
                 </p>
                 <p className="mb-4 text-lg text-dark-default">
-                  <strong>Price:</strong> ${product.data.price}
+                  <strong>Warehouse Location:</strong>{" "}
+                  {inventory.data.warehouseLocation}
                 </p>
-              </div>
-              <div className="flex flex-wrap justify-center gap-4">
-                {product.data.image.map((img, index) => (
-                  <img
-                    key={index}
-                    src={img.url}
-                    alt={`Image ${index + 1} of ${product.data.name}`}
-                    className="object-cover w-full h-auto max-w-sm border rounded-lg shadow-md border-primary-default"
-                  />
-                ))}
               </div>
             </div>
           </div>

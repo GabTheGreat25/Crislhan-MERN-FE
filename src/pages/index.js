@@ -9,4 +9,7 @@ export * from "./dashboard/product/viewProductById.jsx";
 export * from "./dashboard/product/createProduct.jsx";
 export * from "./dashboard/product/editProduct.jsx";
 export * from "./dashboard/inventory/index.jsx";
+export * from "./dashboard/inventory/viewInventoryById.jsx";
+export * from "./dashboard/inventory/createInventory.jsx";
+export * from "./dashboard/inventory/editInventory.jsx";
 export * from "./dashboard/transaction/index.jsx";

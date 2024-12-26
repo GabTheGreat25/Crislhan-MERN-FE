@@ -27,7 +27,7 @@ export const getSingleProduct = (builder) =>
     providesTags: [TAGS.PRODUCT],
   });
 
-export const registerProduct = (builder) =>
+export const createProduct = (builder) =>
   builder.mutation({
     query: (payload) => ({
       url: PATH.PRODUCTS,

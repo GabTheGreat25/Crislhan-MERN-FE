@@ -27,7 +27,7 @@ export const getSingleTransaction = (builder) =>
     providesTags: [TAGS.TRANSACTION],
   });
 
-export const registerTransaction = (builder) =>
+export const createTransaction = (builder) =>
   builder.mutation({
     query: (payload) => ({
       url: PATH.TRANSACTIONS,

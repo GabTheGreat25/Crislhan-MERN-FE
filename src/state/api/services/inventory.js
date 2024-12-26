@@ -27,7 +27,7 @@ export const getSingleInventory = (builder) =>
     providesTags: [TAGS.INVENTORY],
   });
 
-export const registerInventory = (builder) =>
+export const createInventory = (builder) =>
   builder.mutation({
     query: (payload) => ({
       url: PATH.INVENTORIES,

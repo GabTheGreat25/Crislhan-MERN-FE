@@ -5,3 +5,6 @@ export * from "./adminFooter.jsx";
 export * from "./adminNavbar.jsx";
 export * from "./customerFooter.jsx";
 export * from "./customerNavbar.jsx";
+export * from "./pieChart.jsx";
+export * from "./barChart.jsx";
+export * from "./lineChart.jsx";

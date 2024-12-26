@@ -17,6 +17,9 @@ import {
   CreateProduct,
   EditProduct,
   Inventory,
+  ViewInventoryById,
+  CreateInventory,
+  EditInventory,
   Transaction,
 } from "@/pages";
 import {
@@ -55,6 +58,15 @@ export default function App() {
                   <Route path="product/create" element={<CreateProduct />} />
                   <Route path="product/edit/:id" element={<EditProduct />} />
                   <Route path="inventory" element={<Inventory />} />
+                  <Route path="inventory/:id" element={<ViewInventoryById />} />
+                  <Route
+                    path="inventory/create"
+                    element={<CreateInventory />}
+                  />
+                  <Route
+                    path="inventory/edit/:id"
+                    element={<EditInventory />}
+                  />
                   <Route path="transaction" element={<Transaction />} />
                 </Route>
                 {/* Customer Routes */}

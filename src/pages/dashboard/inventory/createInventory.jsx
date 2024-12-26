@@ -1,37 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { FadeLoader } from "react-spinners";
 import { useNavigate } from "react-router-dom";
 import { hooks } from "@api";
-import { createProductValidation } from "@validators";
+import { createInventoryValidation } from "@validators";
 import { Toast } from "@utils";
 import { TOAST } from "@constants";
 
-export function CreateProduct() {
+export function CreateInventory() {
   const navigate = useNavigate();
-  const [createProduct, { isLoading }] = hooks.useCreateProductMutation();
+  const [createInventory, { isLoading }] = hooks.useCreateInventoryMutation();
+  const { data: products } = hooks.useGetAllProductsQuery();
+  const [productOptions, setProductOptions] = useState([]);
+
+  useEffect(() => {
+    if (products?.data) {
+      setProductOptions(products.data);
+    }
+  }, [products]);
 
   const formik = useFormik({
     initialValues: {
-      name: "",
-      description: "",
-      price: "",
-      image: [],
+      product: "",
+      quantity: "",
+      warehouseLocation: "",
     },
-    validationSchema: createProductValidation,
+    validationSchema: createInventoryValidation,
     onSubmit: async (values) => {
-      const formData = new FormData();
-      formData.append("name", values.name);
-      formData.append("description", values.description);
-      formData.append("price", values.price);
-      values.image.forEach((file) => {
-        formData.append("image", file);
-      });
-      createProduct(formData)
+      createInventory(values)
         .unwrap()
         .then(() => {
-          Toast(TOAST.SUCCESS, "Product created successfully!");
-          navigate("/dashboard/product");
+          Toast(TOAST.SUCCESS, "Inventory created successfully!");
+          navigate("/dashboard/inventory");
         })
         .catch((error) => {
           const errorMessage =
@@ -58,117 +58,96 @@ export function CreateProduct() {
           </button>
           <div className="max-w-3xl p-8 mx-auto rounded-lg shadow-lg bg-light-default">
             <h1 className="mb-8 text-3xl font-bold text-primary-default">
-              Create Product
+              Create Inventory
             </h1>
             <form onSubmit={formik.handleSubmit}>
               <div className="mb-4">
                 <label
-                  htmlFor="name"
+                  htmlFor="product"
                   className="block mb-2 text-lg font-semibold text-dark-default"
                 >
-                  Product Name <span className="text-error-default">*</span>
+                  Product <span className="text-error-default">*</span>
                 </label>
-                <input
-                  type="text"
-                  id="name"
-                  placeholder="Enter product name"
+                <select
+                  id="product"
                   className={`w-full p-4 text-lg placeholder-gray-400 border rounded-md bg-light-default text-dark-default focus:ring-2 focus:ring-primary-default focus:outline-none ${
-                    formik.errors.name && formik.touched.name
+                    formik.errors.product && formik.touched.product
                       ? "border-error-default"
                       : ""
                   }`}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={formik.values.name}
-                />
-                {formik.errors.name && formik.touched.name && (
+                  value={formik.values.product}
+                >
+                  <option value="">Select a product</option>
+                  {productOptions.map((product) => (
+                    <option key={product._id} value={product._id}>
+                      {product.name}
+                    </option>
+                  ))}
+                </select>
+                {formik.errors.product && formik.touched.product && (
                   <p className="mt-2 text-xl text-error-default">
-                    {formik.errors.name}
+                    {formik.errors.product}
                   </p>
                 )}
               </div>
 
               <div className="mb-4">
                 <label
-                  htmlFor="description"
+                  htmlFor="quantity"
                   className="block mb-2 text-lg font-semibold text-dark-default"
                 >
-                  Description <span className="text-error-default">*</span>
-                </label>
-                <textarea
-                  id="description"
-                  placeholder="Enter product description"
-                  className={`w-full p-4 text-lg placeholder-gray-400 border rounded-md bg-light-default text-dark-default focus:ring-2 focus:ring-primary-default focus:outline-none ${
-                    formik.errors.description && formik.touched.description
-                      ? "border-error-default"
-                      : ""
-                  }`}
-                  rows="5"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.description}
-                />
-                {formik.errors.description && formik.touched.description && (
-                  <p className="mt-2 text-xl text-error-default">
-                    {formik.errors.description}
-                  </p>
-                )}
-              </div>
-
-              <div className="mb-4">
-                <label
-                  htmlFor="price"
-                  className="block mb-2 text-lg font-semibold text-dark-default"
-                >
-                  Price <span className="text-error-default">*</span>
+                  Quantity <span className="text-error-default">*</span>
                 </label>
                 <input
                   type="number"
-                  id="price"
-                  placeholder="Enter product price"
+                  id="quantity"
+                  placeholder="Enter product quantity"
                   className={`w-full p-4 text-lg placeholder-gray-400 border rounded-md bg-light-default text-dark-default focus:ring-2 focus:ring-primary-default focus:outline-none ${
-                    formik.errors.price && formik.touched.price
+                    formik.errors.quantity && formik.touched.quantity
                       ? "border-error-default"
                       : ""
                   }`}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={formik.values.price}
+                  value={formik.values.quantity}
                 />
-                {formik.errors.price && formik.touched.price && (
+                {formik.errors.quantity && formik.touched.quantity && (
                   <p className="mt-2 text-xl text-error-default">
-                    {formik.errors.price}
+                    {formik.errors.quantity}
                   </p>
                 )}
               </div>
 
               <div className="mb-4">
                 <label
-                  htmlFor="image"
+                  htmlFor="warehouseLocation"
                   className="block mb-2 text-lg font-semibold text-dark-default"
                 >
-                  Images <span className="text-error-default">*</span>
+                  Warehouse Location{" "}
+                  <span className="text-error-default">*</span>
                 </label>
                 <input
-                  type="file"
-                  id="image"
-                  accept="image/*"
-                  multiple
+                  type="text"
+                  id="warehouseLocation"
+                  placeholder="Enter warehouse location"
                   className={`w-full p-4 text-lg placeholder-gray-400 border rounded-md bg-light-default text-dark-default focus:ring-2 focus:ring-primary-default focus:outline-none ${
-                    formik.errors.image && formik.touched.image
+                    formik.errors.warehouseLocation &&
+                    formik.touched.warehouseLocation
                       ? "border-error-default"
                       : ""
                   }`}
-                  onChange={(event) => {
-                    const files = Array.from(event.currentTarget.files);
-                    formik.setFieldValue("image", files);
-                  }}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.warehouseLocation}
                 />
-                {formik.errors.image && formik.touched.image && (
-                  <p className="mt-2 text-xl text-error-default">
-                    {formik.errors.image}
-                  </p>
-                )}
+                {formik.errors.warehouseLocation &&
+                  formik.touched.warehouseLocation && (
+                    <p className="mt-2 text-xl text-error-default">
+                      {formik.errors.warehouseLocation}
+                    </p>
+                  )}
               </div>
 
               <div className="flex items-center justify-center">
@@ -176,7 +155,7 @@ export function CreateProduct() {
                   type="submit"
                   className="px-20 py-3 text-lg rounded-md text-light-default bg-primary-default"
                 >
-                  Create Product
+                  Create Inventory
                 </button>
               </div>
             </form>

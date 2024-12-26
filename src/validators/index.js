@@ -5,3 +5,5 @@ export * from "./resetPassword.js";
 export * from "./updatePassword.js";
 export * from "./createProduct.js";
 export * from "./editProduct.js";
+export * from "./createInventory.js";
+export * from "./editInventory.js";
