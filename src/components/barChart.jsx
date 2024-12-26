@@ -22,11 +22,24 @@ export function BarChart() {
         categories: [],
         title: {
           text: "Year",
+          style: {
+            color: "#FFFFFF",
+          },
+        },
+        labels: {
+          style: {
+            colors: "#FFFFFF",
+          },
         },
       },
       yaxis: {
-        title: {
-          text: "Revenue (PHP)",
+        labels: {
+          style: {
+            colors: "#FFFFFF",
+          },
+          formatter: function (val) {
+            return `Php ${Math.round(val).toLocaleString()}`;
+          },
         },
       },
       title: {
@@ -35,10 +48,20 @@ export function BarChart() {
         style: {
           fontSize: "18px",
           fontWeight: "bold",
+          color: "#FFFFFF",
         },
       },
       legend: {
         position: "bottom",
+        labels: {
+          colors: "#FFFFFF",
+        },
+      },
+      grid: {
+        borderColor: "#333333",
+      },
+      tooltip: {
+        theme: "dark",
       },
     },
   });
@@ -77,7 +100,9 @@ export function BarChart() {
             <FadeLoader color="#FAF7F7" loading={true} size={50} />
           </div>
         ) : chartData.series[0].data.length === 0 ? (
-          <div>No revenue data available to display.</div>
+          <div className="text-white">
+            No revenue data available to display.
+          </div>
         ) : (
           <Chart
             options={chartData.options}

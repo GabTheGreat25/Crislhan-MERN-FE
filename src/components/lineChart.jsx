@@ -55,20 +55,26 @@ export function LineChart() {
           categories: months,
           title: {
             text: "Month",
+            style: {
+              color: "#FFFFFF",
+            },
           },
           labels: {
             style: {
-              colors: "#fff",
+              colors: "#FFFFFF",
             },
           },
         },
         yaxis: {
           title: {
             text: "Revenue (PHP)",
+            style: {
+              color: "#FFFFFF",
+            },
           },
           labels: {
             style: {
-              colors: "#fff",
+              colors: "#FFFFFF",
             },
             formatter: function (val) {
               return `Php ${Math.round(val).toLocaleString()}`;
@@ -76,7 +82,7 @@ export function LineChart() {
           },
         },
         grid: {
-          borderColor: "#333",
+          borderColor: "#333333",
           strokeDashArray: 5,
         },
         legend: {
@@ -84,7 +90,7 @@ export function LineChart() {
           horizontalAlign: "right",
           offsetY: 0,
           labels: {
-            colors: "#ffffff",
+            colors: "#FFFFFF",
           },
           itemMargin: {
             horizontal: 10,
@@ -109,7 +115,7 @@ export function LineChart() {
           height="350"
         />
       ) : (
-        <div>No transaction data available.</div>
+        <div className="text-white">No transaction data available.</div>
       )}
     </div>
   );

@@ -15,6 +15,9 @@ export function PieChart() {
       labels: [],
       legend: {
         position: "bottom",
+        labels: {
+          colors: "#FFFFFF",
+        },
       },
       title: {
         text: "Stock Distribution by Product",
@@ -22,7 +25,16 @@ export function PieChart() {
         style: {
           fontSize: "18px",
           fontWeight: "bold",
+          color: "#FFFFFF",
         },
+      },
+      dataLabels: {
+        style: {
+          colors: ["#FFFFFF"],
+        },
+      },
+      tooltip: {
+        theme: "dark",
       },
     },
   });
@@ -57,7 +69,9 @@ export function PieChart() {
             <FadeLoader color="#FAF7F7" loading={true} size={50} />
           </div>
         ) : chartData.series.length === 0 ? (
-          <div>No inventory stock data available to display.</div>
+          <div className="text-white">
+            No inventory stock data available to display.
+          </div>
         ) : (
           <Chart
             options={chartData.options}
