@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import { AdminNavbar, AdminFooter } from "@components";
+import { AdminNavbar } from "@components";
 
 export function AdminLayout() {
   return (
@@ -14,11 +14,6 @@ export function AdminLayout() {
       <main className="flex-grow">
         <Outlet />
       </main>
-
-      {/* Footer */}
-      <footer>
-        <AdminFooter />
-      </footer>
     </div>
   );
 }

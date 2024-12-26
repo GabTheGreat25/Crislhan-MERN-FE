@@ -33,7 +33,6 @@ export function ForgotPassword() {
             );
         })
         .catch((error) => {
-          console.error("API error:", error);
           Toast(
             TOAST.ERROR,
             error?.data?.message ||

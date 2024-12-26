@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import { CustomerNavbar, CustomerFooter } from "@components";
+import { CustomerNavbar } from "@components";
 
 export function CustomerLayout() {
   return (
@@ -14,11 +14,6 @@ export function CustomerLayout() {
       <main className="flex-grow">
         <Outlet />
       </main>
-
-      {/* Footer */}
-      <footer>
-        <CustomerFooter />
-      </footer>
     </div>
   );
 }

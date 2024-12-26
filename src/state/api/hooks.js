@@ -8,7 +8,5 @@ export const generateHooks = (api) => {
       useQuery || useMutation;
   });
 
-  console.log(hooks);
-
   return hooks;
 };

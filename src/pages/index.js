@@ -18,3 +18,6 @@ export * from "./dashboard/transaction/editTransaction.jsx";
 export * from "./profile/editProfile.jsx";
 export * from "./profile/changePassword.jsx";
 export * from "./home/index.jsx";
+export * from "./home/transaction/cart.jsx";
+export * from "./home/transaction/index.jsx";
+export * from "./home/transaction/history.jsx";

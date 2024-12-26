@@ -27,7 +27,7 @@ export function EditTransaction() {
         .unwrap()
         .then(() => {
           Toast(TOAST.SUCCESS, "Transaction updated successfully!");
-          navigate("/dashboard/transactions");
+          navigate("/dashboard/transaction");
         })
         .catch((error) => {
           const errorMessage =
